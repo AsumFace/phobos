@@ -1886,7 +1886,10 @@ if (((ss == SwapStrategy.unstable && (hasSwappableElements!Range ||
     }
     else
     {
-        static assert(false, "Invalid predicate passed to sort: " ~ less.stringof);
+        static assert(false, "Invalid predicate passed to sort:"
+            ~ "Should return bool, but returns "
+            ~ typeof(lessFun(r.front, r.front)).stringof
+            ~ "\nPredicate: " ~ less.stringof);
     }
     return assumeSorted!less(r);
 }
